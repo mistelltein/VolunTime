@@ -1,6 +1,7 @@
 package com.example.voluntime.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -18,9 +19,11 @@ public class Event {
     private long id;
 
     @Column(nullable = false)
+    @NotBlank(message = "Title cannot be empty")
     private String title;
 
     @Column(nullable = false, columnDefinition = "TEXT")
+    @NotBlank(message = "Description is required")
     private String description;
 
     @Column(nullable = false)
@@ -36,8 +39,10 @@ public class Event {
     private String requirements;
 
     @Column(nullable = false)
+    @Future(message = "Start date must be in the future")
     private LocalDateTime startDate;
 
     @Column(nullable = false)
+    @Future(message = "End date must be in the future")
     private LocalDateTime endDate;
 }

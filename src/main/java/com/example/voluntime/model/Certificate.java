@@ -2,6 +2,7 @@ package com.example.voluntime.model;
 
 import com.example.voluntime.enums.CertificateType;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -31,6 +32,7 @@ public class Certificate {
     private User issuedBy;
 
     @Column(nullable = false)
+    @PastOrPresent(message = "Issue date cannot be in the future")
     private LocalDate issueDate;
 
     @Enumerated(EnumType.STRING)
